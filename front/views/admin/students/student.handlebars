@@ -1,0 +1,40 @@
+<h2>Lista de Alunos</h2>
+<hr>
+<a href="/student/cad"><button type="button" class="btn btn-success">Novo Aluno</button></a>
+{{#each teachers}}
+<div class="card mt-4">
+    <div class="card-body">
+        <h4>
+            <span class="badge bg-secondary">{{nome}}</span>
+        </h4>
+        <small>
+            <h4>Email: {{email}}</h4>
+        </small>
+        <h4><small>Telefone: {{telefone}}</small><br></h4>
+
+
+        {{#if_eq matriculado "0"}}
+        <h4> <small>
+                Pagamento: <span class="badge bg-warning text-dark">Pendente</span>
+            </small></h4>
+        {{else}}
+        {{#if_eq matriculado "1"}}
+        <small>Pagamento: <span class="badge bg-success">Confirmado</span></small><br>
+        {{else}}
+        <small>Pagamento: <span class="badge bg-danger"> Cencelado</span></small><br></small>
+        {{/if_eq}}
+        {{/if_eq}}
+        <br>
+
+        <form action="/student/deletar/" method="POST">
+            <input type="hidden" name="id" value="{{_id}}">
+            <button type="submit" class="btn btn-danger mt-2">Deletar Aluno</button>
+        </form>
+
+
+    </div>
+</div>
+
+{{else}}
+
+{{/each}}
